@@ -1,0 +1,53 @@
+​
+#读出文本本件，统计单词数输出；读出文本文件，随机输出其中的10个单词
+import re
+import random
+f=open("this.txt","r")
+r = re.compile(r"[,!\*\.]")
+#统计每个单词数
+words = {}
+f=open("this.txt","r")
+for line in f:
+    for word in r.sub("",line.strip()).split(" "):
+        if word in words:
+            words[word] += 1
+        words.setdefault(word,1)
+print(words)
+#随机输出10个单词
+f=open("this.txt","r")
+a=[]
+for line in f:
+    for word in r.sub("",line.strip()).split(" "):
+        a.append(word)
+l=[]
+for i in range(10):
+    x=random.randint(0,len(a)-1)
+    if x not in l:
+        l.append(x)
+for i in range(10):
+    print(a[l[i]])
+f.close()
+
+​
+this.txt:
+The Zen of Python, by Tim Peters
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
